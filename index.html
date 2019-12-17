@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Form</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="inputbox">
+		<form method="post" name="inputform" action="submitform.php">
+	<p>Name: <input type="text" name="vname" placeholder="Enter Your Name" required></p>
+	<p>Email: <input type="email" name="vemail" placeholder="Enter Your Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></p>
+
+	<p>Card: <input type="text" id="vcreditcard" name="vcreditcard" data-inputmask="'mask': '9999 9999 9999 9999'" placeholder="Enter a Proxy Credit Card Number" required onblur="
+		vcreditcard = this.value;
+	  this.value = this.value.replace(/[^\d]/g, '');
+	  if(!checkLuhn(this.value)) {
+	    alert('You have entered an incorrect card number, please try again');
+	    this.value ="";
+	  }
+	" onFocus="
+	  if(this.value != vcreditcard) this.value = vcreditcard;
+	"></p>
+
+	<p><input type="submit" name=vsubmit value="Submit"></p>
+		</form>
+	</div>
+	<div class="dropdown">
+  <button class="dropbtn">Navigation</button>
+  	<div class="dropdown-content">
+	    <a href="twitter.html">Twitter</a>
+  	</div>
+	</div>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script src="assets/script.js"></script>
+
+	<script type="text/javascript"> var vcreditcard=""; function checkLuhn(input)
+  {
+    var sum = 0;
+    var numdigits = input.length;
+    var parity = numdigits % 2;
+    for(var i=0; i < numdigits; i++) {
+      var digit = parseInt(input.charAt(i))
+      if(i % 2 == parity) digit *= 2;
+      if(digit > 9) digit -= 9;
+      sum += digit;
+    }
+    return (sum % 10) == 0;
+}
+</script>
+
+</body>
+</html>
